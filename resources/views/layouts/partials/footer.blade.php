@@ -103,8 +103,8 @@
             count++;
             newRowAdd =
                 '<div id="questions"> <div class="col-md-10 py-4">' +
-                '<label class="required fs-6 fw-bold mb-2">Phone Number ' + count + ':</label> <div class="input-group">' +
-                '<input type="text" name="question" class="form-control form-control-solid" placeholder="123456789">' +
+                '<label class="required fs-6 fw-bold mb-2">Phone Number </label> <div class="input-group">' +
+                '<input type="number" name="phone_number[]" class="form-control form-control-solid" placeholder="123456789">' +
                 '<button type="button" id="DeleteRow" class="btn btn-sm btn-light-danger fs-6 fw-bold"><i class="fas fa-trash-alt fs-4 pe-2"></i>Delete</button>' +
                 '</div> </div> </div>';
             $('#newinput').append(newRowAdd);
@@ -118,9 +118,21 @@
         $("#urlAdder").click(function() {
             url++;
             newUrlAdd =
-                '<div id="urls"> <div class="col-md-10 py-4">' +
+                '<div id="urls" class="row">'+
+                '<div class="col-md-4 py-4">'+
+                   '<label class="required fs-6 fw-bold mb-2">Type</label>'+
+                    '<select name="type[]" class="form-control form-control-solid js-example-basic-single">'+
+                        '<option value="Instgram">Instgram</option>'+
+                        '<option value="Facebook">Facebook</option>'+
+                        '<option value="Snapchat">Snapchat</option>'+
+                        '<option value="Twitter">Twitter</option>'+
+                        '<option value="Vinted">Vinted</option>'+
+                        '<option value="Website">Website </option>'+
+                        '</select>'+
+                        '</div>'+
+                '<div class="col-md-8 py-4">' +
                 '<label class="required fs-6 fw-bold mb-2">URL ' + url + ':</label> <div class="input-group">' +
-                '<input type="text" name="url" class="form-control form-control-solid" placeholder="instagram.com/test">' +
+                '<input type="text" name="link[]" class="form-control form-control-solid" placeholder="instagram.com/test">' +
                 '<button type="button" id="DeleteRow" class="btn btn-sm btn-light-danger fs-6 fw-bold"><i class="fas fa-trash-alt fs-4 pe-2"></i>Delete</button>' +
                 '</div> </div> </div>';
             $('#newinputurl').append(newUrlAdd);

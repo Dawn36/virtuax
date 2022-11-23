@@ -3,7 +3,7 @@
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         <!--begin::Logo-->
         <a href="{{route('dashboard')}}">
-            <img alt="Logo" src="{{ asset('theme/assets/media/logos/logo@3x.png')}}" class="h-55px logo" />
+            <img alt="Logo" src="{{ asset('theme/assets/media/logos/icon@3x.png')}}" class="h-55px logo" />
         </a>
         <!--end::Logo-->
         <!--begin::Aside toggler-->

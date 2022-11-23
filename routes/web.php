@@ -20,11 +20,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('company', CompanyController::class);
     Route::resource('user', UserController::class);
-
+    
+    Route::post('user_contact_form', [UserController::class, 'userContactForm'])->name('user_contact_form');
+    Route::post('user_pk_pass', [UserController::class, 'userPkPass'])->name('user_pk_pass');
+    
     Route::get('contact_form', [UserController::class, 'contactForm'])->name('contact_form');
     Route::get('virtual_card', [UserController::class, 'virtualCard'])->name('virtual_card');
     Route::get('user_show/{id}', [UserController::class, 'userShow'])->name('user_show');
     Route::get('user_index', [UserController::class, 'userIndex'])->name('user_index');
+    Route::get('user_Qr', [UserController::class, 'userQr'])->name('user_Qr');
+    Route::get('user_Qr_add/{userId}', [UserController::class, 'userQrAdd'])->name('user_Qr_add');
     Route::get('user_create', [UserController::class, 'userCreate'])->name('user_create');
     Route::resource('settings', SettingsController::class);
     Route::post('/settings/{id}/updateEmail', [SettingsController::class, 'updateEmail'])->name('updateEmail');
@@ -35,8 +40,8 @@ Route::get('/', function () {
     return redirect('login');
 });
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
+// Route::get('/aaaaaaaaaa', function () {
+//     return view('user/user_details');
+// })->middleware(['auth'])->name('aaaaaaaaaaaa');
 
 require __DIR__.'/auth.php';

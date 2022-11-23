@@ -95,6 +95,7 @@
                                             <th>Phone Number</th>
                                             <th>Company</th>
                                             <th>Role</th>
+                                            <th># no fo views</th>
                                             <th>Creation Date</th>
                                             <th>Actions</th>
                                         </tr>
@@ -110,9 +111,10 @@
                                             <td>
                                                 <span class="badge badge-light-success fw-bolder fs-7 px-2 py-1">User</span>
                                             </td>
+                                            <td>{{$users[$i]->user_views}}</td>
                                             <td>{{Date('Y-m-d',strtotime($users[$i]->created_at))}}</td>
                                             <td>
-                                                <a href="#kt_modal_share_model" class="btn btn-icon btn-sm btn-color-gray-400 btn-active-icon-primary" data-bs-toggle="modal" data-bs-original-title="Share Model">
+                                                <a href="#kt_modal_share_model" class="btn btn-icon btn-sm btn-color-gray-400 btn-active-icon-primary" onclick="userQr('{{$users[$i]->id}}')" data-bs-original-title="Share Model">
                                                     <span class="svg-icon svg-icon-2">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                                             <path opacity="0.3" d="M18.4 5.59998C18.7766 5.9772 18.9881 6.48846 18.9881 7.02148C18.9881 7.55451 18.7766 8.06577 18.4 8.44299L14.843 12C14.466 12.377 13.9547 12.5887 13.4215 12.5887C12.8883 12.5887 12.377 12.377 12 12C11.623 11.623 11.4112 11.1117 11.4112 10.5785C11.4112 10.0453 11.623 9.53399 12 9.15698L15.553 5.604C15.9302 5.22741 16.4415 5.01587 16.9745 5.01587C17.5075 5.01587 18.0188 5.22741 18.396 5.604L18.4 5.59998ZM20.528 3.47205C20.0614 3.00535 19.5074 2.63503 18.8977 2.38245C18.288 2.12987 17.6344 1.99988 16.9745 1.99988C16.3145 1.99988 15.661 2.12987 15.0513 2.38245C14.4416 2.63503 13.8876 3.00535 13.421 3.47205L9.86801 7.02502C9.40136 7.49168 9.03118 8.04568 8.77863 8.6554C8.52608 9.26511 8.39609 9.91855 8.39609 10.5785C8.39609 11.2384 8.52608 11.8919 8.77863 12.5016C9.03118 13.1113 9.40136 13.6653 9.86801 14.132C10.3347 14.5986 10.8886 14.9688 11.4984 15.2213C12.1081 15.4739 12.7616 15.6039 13.4215 15.6039C14.0815 15.6039 14.7349 15.4739 15.3446 15.2213C15.9543 14.9688 16.5084 14.5986 16.975 14.132L20.528 10.579C20.9947 10.1124 21.3649 9.55844 21.6175 8.94873C21.8701 8.33902 22.0001 7.68547 22.0001 7.02551C22.0001 6.36555 21.8701 5.71201 21.6175 5.10229C21.3649 4.49258 20.9947 3.93867 20.528 3.47205Z" fill="black"></path>
@@ -164,46 +166,24 @@
     </div>
     <!--end::Post-->
 </div>
-<div class="modal fade" id="kt_modal_share_model" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header" id="kt_modal_add_user_header">
-                <h2 class="fw-bolder">Share</h2>
-                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
-                    <span class="svg-icon svg-icon-2x">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black"></rect>
-                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black"></rect>
-                        </svg>
-                    </span>
-                </div>
-            </div>
-            <div class="modal-body scroll-y">
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade active show" id="kt_tab_pane_1" role="tabpanel">
-                        <form id="" class="form" method="POST" action="#">
-                            <div class="d-flex flex-column scroll-y me-n7 pe-7" id="" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
-                                <div class="fv-row mb-7">
-                                    <label class="fw-bold fs-4 mb-2">Link</label>
-                                    <input type="text" name="link" class="form-control form-control-solid mb-3 mb-lg-0" value="https://modelviewer.dev/node_modules/@google/model-viewer/dist/model-viewer.min.js" />
-                                </div>
-                                <div class="fv-row mb-7">
-                                    <label class="fw-bold fs-4 mb-2 d-block">QR Code</label>
-                                    <img src="{{ asset('theme/assets/media/logos/QR_code.png')}}" alt="" class="w-200px">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <script>
-   
+   function userQr(userId) {
+    let value = {
+        userId: userId,
+        };
+        $.ajax({
+            type: 'GET',
+            url: "{{ route('user_Qr') }}",
+            data: value,
+            success: function(result) {
+                $('#myModalLgHeading').html('Share');
+                $('#modalBodyLarge').html(result);
+                $('#myModalLg').modal('show');
+            }
+        });
+    }
 
     function addUser() {
-
         $.ajax({
             type: 'GET',
             url: "{{ route('user_create') }}",
