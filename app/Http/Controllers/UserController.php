@@ -175,12 +175,23 @@ class UserController extends Controller
     }
     public function contactForm()
     {
-        return view('user/contact_form');
+        $id=Auth::user()->id;
+        $users = User::find($id);
+        $usersPhone= DB::select(DB::raw("SELECT * FROM user_phone_number where user_id='$id'"));
+        $usersLink= DB::select(DB::raw("SELECT * FROM user_links where user_id='$id'"));
+        $parentId=$users->parent_id;
+        $company = User::where('id',$parentId)->get();
+
+        return view('user/contact_form',compact('users','company','usersPhone','usersLink'));
 
     }
     public function virtualCard()
     {
-        return view('user/virtual_card');
+        $id=Auth::user()->id;
+        $users = User::find($id);
+        $parentId=$users->parent_id;
+        $company = User::where('id',$parentId)->get();
+        return view('user/virtual_card',compact('users','company'));
     }
     public function userQr(Request $request)
     {
@@ -195,7 +206,6 @@ class UserController extends Controller
         $id=$userLink[0];
         $userDetails = User::find($id);
         $dateTime=Date('Y-m-d h:i:s');
-        dd($id);
         DB::insert('insert into user_views 
             (user_id,created_at) values(?,?)',
             [$id,$dateTime]);

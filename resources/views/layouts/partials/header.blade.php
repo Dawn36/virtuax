@@ -73,6 +73,9 @@
                                         {{ Route::currentRouteName() == 'dashboard'  ? 'Dashboard' : '' }}
                                         {{ Route::currentRouteName() == 'company.show' || Route::currentRouteName() == 'company.index'  ? 'Company Listing' : '' }}
                                         {{ Route::currentRouteName() == 'user_index'   ? 'Users Listing' : '' }}
+                                        {{ Route::currentRouteName() == 'contact_form'   ? 'Your Contact Form' : '' }}
+                                        {{ Route::currentRouteName() == 'virtual_card'   ? 'Your Pass (iOS)' : '' }}
+                                        {{ Route::currentRouteName() == 'user_show'   ? 'Create Contact Form & Pass (iOS)' : '' }}
                                         
                                     </h1>
                                     <!--end::Page Title-->

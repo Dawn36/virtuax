@@ -22,23 +22,27 @@
                                         <h2 class="mb-1">Create your VirtuaCard</h2>
                                     </div>
                                 </div>
+                                <form id="" class="form" method="POST" action="{{ route('user_pk_pass') }}" enctype="multipart/form-data">
+                                    <!--begin::Scroll-->
+                                    <input hidden name="user_id" value="{{$users->id}}" />
+                                    @csrf
                                 <div class="card-body d-flex flex-column pt-1">
                                     <div class="fv-row mb-7 fv-plugins-icon-container">
                                         <label class="required fs-6 fw-bold mb-2">First Name</label>
-                                        <input type="text" class="form-control form-control-solid" value="{{Auth::user()->first_name}}" placeholder="" name="first_name">
+                                        <input type="text" class="form-control form-control-solid" value="{{$users->first_name}}" placeholder="" name="first_name">
                                     </div>
                                     <div class="fv-row mb-7 fv-plugins-icon-container">
                                         <label class="required fs-6 fw-bold mb-2">Last Name</label>
-                                        <input type="text" class="form-control form-control-solid" value="{{Auth::user()->last_name}}" placeholder="" name="last_name">
+                                        <input type="text" class="form-control form-control-solid" value="{{$users->last_name}}" placeholder="" name="last_name">
                                     </div>
                                     
                                     <div class="fv-row mb-7 fv-plugins-icon-container">
                                         <label class="required fs-6 fw-bold mb-2">Function</label>
-                                        <input type="text" class="form-control form-control-solid" placeholder="" name="function">
+                                        <input type="text" class="form-control form-control-solid" value="{{$users->function}}" placeholder="" name="function">
                                     </div>
                                     <div class="fv-row mb-7 fv-plugins-icon-container">
                                         <label class="required fs-6 fw-bold mb-2">Company</label>
-                                        <input type="text" class="form-control form-control-solid" placeholder="" name="company">
+                                        <input type="text" class="form-control form-control-solid" value="{{$company[0]->company_name}}" placeholder="" name="company_name">
                                     </div>
                                     <div class="fv-row mb-7 fv-plugins-icon-container">
                                         <label class="required fs-6 fw-bold mb-2">Font Color</label>
@@ -56,8 +60,9 @@
                                         <input type="file" name="file" class="form-control form-control-solid" multiple>
                                     </div>
                                     <div class="fv-row mb-7 fv-plugins-icon-container">
-                                        <select name="" class="form-control form-control-solid">
-                                            <option value="">Virtua Card Logo</option>
+                                        <select name="logo" class="form-control form-control-solid">
+                                            <option value="{{ asset('theme/assets/media/logos/icon.png')}}">Logo Black</option>
+                                            <option value="{{ asset('theme/assets/media/logos/icon@3x.png')}}">Logo White</option>
                                         </select>
                                     </div>
 
@@ -65,6 +70,7 @@
                                         <button type="submit" class="btn btn-primary">Create your Pass</button>
                                     </div>
                                 </div>
+                                </form>
                             </div>
                         </div>
                         <!--end:::Tab pane-->
