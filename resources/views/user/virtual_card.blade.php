@@ -62,7 +62,7 @@
                                     <div class="fv-row mb-7 fv-plugins-icon-container">
                                         <select name="logo" class="form-control form-control-solid">
                                             <option value="{{ asset('theme/assets/media/logos/icon.png')}}">Logo Black</option>
-                                            <option value="{{ asset('theme/assets/media/logos/icon@3x.png')}}">Logo White</option>
+                                            <option value="{{ asset('theme/assets/media/icon.png')}}">Logo White</option>
                                         </select>
                                     </div>
 
