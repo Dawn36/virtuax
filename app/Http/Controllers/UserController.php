@@ -210,7 +210,7 @@ class UserController extends Controller
             (user_id,created_at) values(?,?)',
             [$id,$dateTime]);
             $newPath=explode('/',$userDetails->v_card_path);
-            echo $domain = substr (Request::root(), 7);
+            echo request()->getHost();
             dd($newPath);
             public_path();
             return response()->download($userDetails->v_card_path);
