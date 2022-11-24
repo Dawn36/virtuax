@@ -283,11 +283,11 @@ class UserController extends Controller
             $vcard->addURL($request->link[$i]);
         }
         
-        // if(!empty($path))
-        // {
-        //     $path=asset($path);
-        //     $vcard->addPhoto($path);
-        // }
+        if(!empty($path))
+        {
+            $path=asset($path);
+            $vcard->addPhoto($path);
+        }
         // return vcard as a string
         //return $vcard->getOutput();
 
