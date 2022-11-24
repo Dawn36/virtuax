@@ -209,7 +209,10 @@ class UserController extends Controller
         DB::insert('insert into user_views 
             (user_id,created_at) values(?,?)',
             [$id,$dateTime]);
-            dd($userDetails->v_card_path);
+            $newPath=explode('/',$userDetails->v_card_path);
+            echo $domain = substr (Request::root(), 7);
+            dd($newPath);
+            public_path();
             return response()->download($userDetails->v_card_path);
     }
     public function userContactForm(Request $request)
