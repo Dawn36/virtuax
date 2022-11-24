@@ -295,10 +295,11 @@ class UserController extends Controller
         // return $vcard->download();
 
         // save vcard on disk
-        $vcardPath=asset('vcard');
+        $vcardPathDb=asset('vcard');
+        $vcardPath='../../../public/vcard';
         $vcard->setSavePath($vcardPath);
         $vcard->save();
-        $userData['v_card_path']=$vcardPath.'/'.$vcard->filename.'.vcf';
+        $userData['v_card_path']=$vcardPathDb.'/'.$vcard->filename.'.vcf';
         $userData->save();
         return redirect()->back();
 
