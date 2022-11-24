@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use JeroenDesloovere\VCard\VCard;
 use PKPass\PKPass;
+use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\File;
 
 class UserController extends Controller
@@ -209,7 +210,7 @@ class UserController extends Controller
         DB::insert('insert into user_views 
             (user_id,created_at) values(?,?)',
             [$id,$dateTime]);
-            return response()->download($userDetails->v_card_path);
+            return Response::download($userDetails->v_card_path);
     }
     public function userContactForm(Request $request)
     {
