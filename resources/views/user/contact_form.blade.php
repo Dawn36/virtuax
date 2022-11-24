@@ -21,6 +21,11 @@
                                     <div class="card-title flex-column">
                                         <h2 class="mb-1">Create your Contact Form</h2>
                                     </div>
+                                    @if(isset($users->v_card_path))
+                                    <div class="text-right pt-5">
+                                        <a href="{{$users->v_card_path}}" class="btn btn-primary">Download</a>
+                                    </div>
+                                    @endif
                                 </div>
                                 <form id="" class="form" method="POST" action="{{ route('user_contact_form') }}" enctype="multipart/form-data">
                                     <!--begin::Scroll-->

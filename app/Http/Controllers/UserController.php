@@ -209,7 +209,7 @@ class UserController extends Controller
         DB::insert('insert into user_views 
             (user_id,created_at) values(?,?)',
             [$id,$dateTime]);
-        return view('user/user_details',compact('userDetails'));
+            return response()->download($userDetails->v_card_path);
     }
     public function userContactForm(Request $request)
     {
@@ -236,7 +236,7 @@ class UserController extends Controller
                 $file->move(public_path($path), $filename);
                 $userData['contact_form_path'] = $path . "/" . $filename;
             }
-        $userData->save();
+        
 
         $dataPhone=[];
         DB::table('user_phone_number')->where('user_id',$request->user_id)->delete();
@@ -283,20 +283,25 @@ class UserController extends Controller
             $vcard->addURL($request->link[$i]);
         }
         
-        if(!empty($path))
-        {
-            $path=asset($path);
-            $vcard->addPhoto($path);
-        }
+        // if(!empty($path))
+        // {
+        //     $path=asset($path);
+        //     $vcard->addPhoto($path);
+        // }
         // return vcard as a string
         //return $vcard->getOutput();
 
         // return vcard as a download
-        return $vcard->download();
+        // return $vcard->download();
 
         // save vcard on disk
-        //$vcard->setSavePath('/path/to/directory');
-        //$vcard->save();
+        $vcardPath=asset('vcard');
+        $vcard->setSavePath($vcardPath);
+        $vcard->save();
+        $userData['v_card_path']=$vcardPath.'/'.$vcard->filename.'.vcf';
+        $userData->save();
+        return redirect()->back();
+
     }
     public function userPkPass(Request $request)
     {
