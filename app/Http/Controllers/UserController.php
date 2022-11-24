@@ -211,7 +211,6 @@ class UserController extends Controller
             [$id,$dateTime]);
             $hostwithHttp = request()->getSchemeAndHttpHost();
             $newPath=explode($hostwithHttp,$userDetails->v_card_path);
-           
             dd($newPath);
             public_path();
             return response()->download($userDetails->v_card_path);
