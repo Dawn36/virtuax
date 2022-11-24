@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 
 
@@ -19,7 +20,8 @@ class DashboardController extends Controller
         $user=User::where('user_type','1')->count();
         $admin=User::where('user_type','2')->count();
         $company=User::where('user_type','3')->count();
-        return view('dashboard', compact('user','admin','company'));
+        $profileView=DB::table('user_views')->where('user_id',$userId)->count();
+        return view('dashboard', compact('user','admin','company','profileView'));
     }
     
 }
