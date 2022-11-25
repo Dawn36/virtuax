@@ -28,14 +28,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('virtual_card', [UserController::class, 'virtualCard'])->name('virtual_card');
     Route::get('user_show/{id}', [UserController::class, 'userShow'])->name('user_show');
     Route::get('user_index', [UserController::class, 'userIndex'])->name('user_index');
-    Route::get('user_Qr', [UserController::class, 'userQr'])->name('user_Qr');
-    Route::get('user_Qr_add/{userId}', [UserController::class, 'userQrAdd'])->name('user_Qr_add');
+
     Route::get('user_create', [UserController::class, 'userCreate'])->name('user_create');
     Route::resource('settings', SettingsController::class);
     Route::post('/settings/{id}/updateEmail', [SettingsController::class, 'updateEmail'])->name('updateEmail');
     Route::post('/settings/{id}/updatePassword', [SettingsController::class, 'updatePassword'])->name('updatePassword');
 });
-
+Route::get('user_Qr', [UserController::class, 'userQr'])->name('user_Qr');
+Route::get('user_Qr_add/{userId}', [UserController::class, 'userQrAdd'])->name('user_Qr_add');
 Route::get('/', function () {
     return redirect('login');
 });
