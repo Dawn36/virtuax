@@ -349,7 +349,7 @@ $pass->setData('{
       "format" : "PKBarcodeFormatQR",
       "messageEncoding" : "iso-8859-1"
     },
-    "organizationName" : "'.$request->first_name.$request->last_name.' - VirtuaCard",
+    "organizationName" : "'.$request->first_name.' '.$request->last_name.' - VirtuaCard",
     "description" : "",
     "logoText" : "",
     "foregroundColor" : "rgb(' . $rFontColor . ', ' . $gFontColor . ', ' . $bFontColor . ')",

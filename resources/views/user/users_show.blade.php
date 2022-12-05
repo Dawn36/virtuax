@@ -95,7 +95,7 @@
                                         <div class="col-md-10 py-4">
                                             <label class="required fs-6 fw-bold mb-2">Phone Number</label>
                                             <div class="input-group">
-                                                <input type="number" name="phone_number[]" class="form-control form-control-solid"  placeholder="123456789">
+                                                <input type="text" name="phone_number[]" class="form-control form-control-solid"  placeholder="123456789">
                                                 <button type="button" id="DeleteRow" class="btn btn-sm btn-light-danger fs-6 fw-bold"><i class="fas fa-trash-alt fs-4 pe-2"></i>Delete</button>
                                             </div>
                                         </div>
@@ -106,7 +106,7 @@
                                         <div class="col-md-10 py-4">
                                             <label class="required fs-6 fw-bold mb-2">Phone Number</label>
                                             <div class="input-group">
-                                                <input type="number" name="phone_number[]" class="form-control form-control-solid" value="{{$usersPhone[$i]->phone_number}}" placeholder="123456789">
+                                                <input type="text" name="phone_number[]" class="form-control form-control-solid" value="{{$usersPhone[$i]->phone_number}}" placeholder="123456789">
                                                 <button type="button" id="DeleteRow" class="btn btn-sm btn-light-danger fs-6 fw-bold"><i class="fas fa-trash-alt fs-4 pe-2"></i>Delete</button>
                                             </div>
                                         </div>
