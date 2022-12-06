@@ -381,8 +381,8 @@ $pass->setData('{
     }
   }');
 // Add files to the pass package
-$pass->addFile(asset('logos/pass/logo/logo.png'));
-$pass->addFile(asset('logos/pass/logo/logo@2x.png'));
+$pass->addFile(asset('logos/pass/logo/icon.png'));
+$pass->addFile(asset('logos/pass/logo/icon@2x.png'));
 $pass->addFile($request->logo);
 if(!empty($pathImg))
 {
