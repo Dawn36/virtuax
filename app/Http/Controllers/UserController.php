@@ -389,7 +389,6 @@ if(!empty($pathImg))
     $pathImg=asset($pathImg);
     $pass->addFile($pathImg);
 }
-$pass->addFile('background.png', 'strip.png');
 
 // $pass->addFile('D:\dawn\myproject\laravel\New QR\wetransfer_qr-code-project_2022-11-16_0519\virtuax279-laravel-project\virtuax\virtuax\www\icon@2x.png');
 // $pass->addFile('D:\dawn\myproject\laravel\virtuax\public\contactformImg\17\icon.png');
