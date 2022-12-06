@@ -327,7 +327,8 @@ class UserController extends Controller
                 File::delete($previousPicDest);
                 $path = "iospasspath/" . $request->user_id;
                 $file = $request->file('file');
-                $filename = date('YmdHi') . $file->getClientOriginalName();
+                // $filename = date('YmdHi') . $file->getClientOriginalName();
+                $filename = "thumbnail@2x."."png";
                 $file->move(public_path($path), $filename);
                 $userData['ios_pass_path'] = $path . "/" . $filename;
             }
@@ -345,7 +346,7 @@ $pass->setData('{
     "serialNumber" : "'.$request->user_id.'",
     "teamIdentifier" : "Y6J3KU8HYD",
     "barcode" : {
-      "message" : "https://virtuacard.app/contact/llll.vcf ",
+      "message" : "'.$userData->v_card_path.'",
       "format" : "PKBarcodeFormatQR",
       "messageEncoding" : "iso-8859-1"
     },
@@ -380,12 +381,16 @@ $pass->setData('{
     }
   }');
 // Add files to the pass package
+$pass->addFile(asset('logos/pass/logo/logo.png'));
+$pass->addFile(asset('logos/pass/logo/icon@2x.png'));
 $pass->addFile($request->logo);
 if(!empty($pathImg))
 {
     $pathImg=asset($pathImg);
     $pass->addFile($pathImg);
 }
+$pass->addFile('background.png', 'strip.png');
+
 // $pass->addFile('D:\dawn\myproject\laravel\New QR\wetransfer_qr-code-project_2022-11-16_0519\virtuax279-laravel-project\virtuax\virtuax\www\icon@2x.png');
 // $pass->addFile('D:\dawn\myproject\laravel\virtuax\public\contactformImg\17\icon.png');
 // $pass->addFile('D:\dawn\myproject\laravel\virtuax\public\contactformImg\17\202211222029favicon.png');
