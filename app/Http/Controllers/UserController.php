@@ -328,7 +328,7 @@ class UserController extends Controller
                 $path = "iospasspath/" . $request->user_id;
                 $file = $request->file('file');
                 // $filename = date('YmdHi') . $file->getClientOriginalName();
-                $filename = "thumbnail@2x."."png";
+                $filename = "thumbnail."."png";
                 $file->move(public_path($path), $filename);
                 $userData['ios_pass_path'] = $path . "/" . $filename;
             }
@@ -384,12 +384,16 @@ $pass->setData('{
 $pass->addFile(asset('logos/pass/logo/icon.png'));
 $pass->addFile(asset('logos/pass/logo/icon@2x.png'));
 $pass->addFile($request->logo);
+$pass->addFile($request->logo);
+$pass->addFile($request->logo);
 if(!empty($pathImg))
 {
     $pathImg=asset($pathImg);
     $pass->addFile($pathImg);
 }
+$pass->addFile(asset('logos/pass/logo/thumbnail@2x.png'));
 
+//thumbnail@2x.png
 // $pass->addFile('D:\dawn\myproject\laravel\New QR\wetransfer_qr-code-project_2022-11-16_0519\virtuax279-laravel-project\virtuax\virtuax\www\icon@2x.png');
 // $pass->addFile('D:\dawn\myproject\laravel\virtuax\public\contactformImg\17\icon.png');
 // $pass->addFile('D:\dawn\myproject\laravel\virtuax\public\contactformImg\17\202211222029favicon.png');
