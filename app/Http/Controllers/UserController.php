@@ -339,59 +339,116 @@ class UserController extends Controller
     $pass = new PKPass($p12pass, 'Ymacos59-');
 
 // Pass content
-$pass->setData('{
+$data = [
+    'description' => 'Demo pass',
+    'formatVersion' => 1,
+    'organizationName' => 'Flight Express',
+    'passTypeIdentifier' => 'pass.com.scholica.flights', // Change this!
+    'serialNumber' => '12345678',
+    'teamIdentifier' => 'KN44X8ZLNC', // Change this!
+    'boardingPass' => [
+        'primaryFields' => [
+            [
+                'key' => 'origin',
+                'label' => 'San Francisco',
+                'value' => 'SFO',
+            ],
+            [
+                'key' => 'destination',
+                'label' => 'London',
+                'value' => 'LHR',
+            ],
+        ],
+        'secondaryFields' => [
+            [
+                'key' => 'gate',
+                'label' => 'Gate',
+                'value' => 'F12',
+            ],
+            [
+                'key' => 'date',
+                'label' => 'Departure date',
+                'value' => '07/11/2012 10:22',
+            ],
+        ],
+        'backFields' => [
+            [
+                'key' => 'passenger-name',
+                'label' => 'Passenger',
+                'value' => 'John Appleseed',
+            ],
+        ],
+        'transitType' => 'PKTransitTypeAir',
+    ],
+    'barcode' => [
+        'format' => 'PKBarcodeFormatQR',
+        'message' => 'Flight-GateF12-ID6643679AH7B',
+        'messageEncoding' => 'iso-8859-1',
+    ],
+    'backgroundColor' => 'rgb(32,110,247)',
+    'logoText' => 'Flight info',
+    'relevantDate' => date('Y-m-d\TH:i:sP')
+];
+$pass->setData($data);
 
-    "formatVersion" : 1,
-    "passTypeIdentifier" : "pass.com.rework.vcard",
-    "serialNumber" : "'.$request->user_id.'",
-    "teamIdentifier" : "Y6J3KU8HYD",
-    "barcode" : {
-      "message" : "'.$userData->v_card_path.'",
-      "format" : "PKBarcodeFormatQR",
-      "messageEncoding" : "iso-8859-1"
-    },
-    "organizationName" : "'.$request->first_name.' '.$request->last_name.' - VirtuaCard",
-    "description" : "",
-    "logoText" : "",
-    "foregroundColor" : "rgb(' . $rFontColor . ', ' . $gFontColor . ', ' . $bFontColor . ')",
-    "backgroundColor" : "rgb(' . $rBackgroundColor . ', ' . $gBackgroundColor . ', ' . $bBackgroundColor . ')",
-    "labelColor" : "rgb(' . $rTitleColor . ', ' . $gTitleColor . ', ' . $bTitleColor . ')",
-    "generic" : {
-      "primaryFields" : [
-        {
-          "key" : "member",
-          "value" : "' . $request->first_name . ' ' . $request->last_name . '"
-        }
-      ],
-      "secondaryFields" : [
-        {
-          "key" : "subtitle",
-          "label" : "Compnay Name",
-          "value" : "' . $request->company_name . '"
-        }
-      ],
-  "auxiliaryFields" : [
-        {
-          "key" : "subtitle",
-          "label" : "function",
-          "value" : "' . $request->function . '"
-        }
-  ],
-  
-    }
-  }');
 // Add files to the pass package
 $pass->addFile(asset('logos/pass/logo/icon.png'));
 $pass->addFile(asset('logos/pass/logo/icon@2x.png'));
-$pass->addFile($request->logo);
-$pass->addFile($request->logo);
-$pass->addFile($request->logo);
-if(!empty($pathImg))
-{
-    $pathImg=asset($pathImg);
-    $pass->addFile($pathImg);
-}
-$pass->addFile(asset('logos/pass/logo/thumbnail@2x.png'));
+$pass->addFile(asset('logos/pass/logo/logo.png'));
+
+// $pass->setData('{
+
+//     "formatVersion" : 1,
+//     "passTypeIdentifier" : "pass.com.rework.vcard",
+//     "serialNumber" : "'.$request->user_id.'",
+//     "teamIdentifier" : "Y6J3KU8HYD",
+//     "barcode" : {
+//       "message" : "'.$userData->v_card_path.'",
+//       "format" : "PKBarcodeFormatQR",
+//       "messageEncoding" : "iso-8859-1"
+//     },
+//     "organizationName" : "'.$request->first_name.' '.$request->last_name.' - VirtuaCard",
+//     "description" : "",
+//     "logoText" : "",
+//     "foregroundColor" : "rgb(' . $rFontColor . ', ' . $gFontColor . ', ' . $bFontColor . ')",
+//     "backgroundColor" : "rgb(' . $rBackgroundColor . ', ' . $gBackgroundColor . ', ' . $bBackgroundColor . ')",
+//     "labelColor" : "rgb(' . $rTitleColor . ', ' . $gTitleColor . ', ' . $bTitleColor . ')",
+//     "generic" : {
+//       "primaryFields" : [
+//         {
+//           "key" : "member",
+//           "value" : "' . $request->first_name . ' ' . $request->last_name . '"
+//         }
+//       ],
+//       "secondaryFields" : [
+//         {
+//           "key" : "subtitle",
+//           "label" : "Compnay Name",
+//           "value" : "' . $request->company_name . '"
+//         }
+//       ],
+//   "auxiliaryFields" : [
+//         {
+//           "key" : "subtitle",
+//           "label" : "function",
+//           "value" : "' . $request->function . '"
+//         }
+//   ],
+  
+//     }
+//   }');
+// // Add files to the pass package
+// $pass->addFile(asset('logos/pass/logo/icon.png'));
+// $pass->addFile(asset('logos/pass/logo/icon@2x.png'));
+// $pass->addFile($request->logo);
+// $pass->addFile($request->logo);
+// $pass->addFile($request->logo);
+// if(!empty($pathImg))
+// {
+//     $pathImg=asset($pathImg);
+//     $pass->addFile($pathImg);
+// }
+// $pass->addFile(asset('logos/pass/logo/thumbnail@2x.png'));
 
 //thumbnail@2x.png
 // $pass->addFile('D:\dawn\myproject\laravel\New QR\wetransfer_qr-code-project_2022-11-16_0519\virtuax279-laravel-project\virtuax\virtuax\www\icon@2x.png');
