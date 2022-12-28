@@ -16,6 +16,31 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`virtuax` /*!40100 DEFAULT CHARACTER SET
 
 USE `virtuax`;
 
+/*Table structure for table `companies` */
+
+DROP TABLE IF EXISTS `companies`;
+
+CREATE TABLE `companies` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) DEFAULT NULL,
+  `company_name` varchar(255) DEFAULT NULL,
+  `street_address` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `state` varchar(255) DEFAULT NULL,
+  `zip_code` varchar(255) DEFAULT NULL,
+  `country` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `created_by` bigint(20) DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `updated_by` bigint(20) DEFAULT NULL,
+  `website` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+/*Data for the table `companies` */
+
+insert  into `companies`(`id`,`user_id`,`company_name`,`street_address`,`city`,`state`,`zip_code`,`country`,`created_at`,`created_by`,`updated_at`,`updated_by`,`website`) values (1,1,'Charlotte Metro Credit Union','718 Central Ave','Charlotte','North Carolina','28204','United States','2022-11-15 01:48:43',1,'2022-11-15 01:48:43',NULL,'www.cmcu.org'),(2,1,'dadsadaaaa','214 N Tryon St Fl 20','Charlotte','North Carolina','28202','United States a11','2022-11-15 01:48:43',1,'2022-11-15 12:55:23',1,'www.grandbridge.com122'),(3,1,'Weber and Richmond Trading','In ea nobis consequa','Aut Nam est explicab','Quia qui enim dolor','35919','Et neque beatae nisi','2022-11-15 12:56:17',1,'2022-11-15 12:56:31',1,'https://a'),(4,1,'tetsing',NULL,NULL,NULL,NULL,NULL,'2022-11-16 06:41:58',1,'2022-11-16 06:41:58',NULL,NULL);
+
 /*Table structure for table `failed_jobs` */
 
 DROP TABLE IF EXISTS `failed_jobs`;
@@ -128,7 +153,7 @@ CREATE TABLE `role_user` (
 
 /*Data for the table `role_user` */
 
-insert  into `role_user`(`role_id`,`user_id`,`user_type`) values (2,1,'App\\Models\\User');
+insert  into `role_user`(`role_id`,`user_id`,`user_type`) values (1,25,'App\\Models\\User'),(1,27,'App\\Models\\User'),(2,1,'App\\Models\\User'),(3,24,'App\\Models\\User'),(3,28,'App\\Models\\User');
 
 /*Table structure for table `roles` */
 
@@ -161,9 +186,11 @@ CREATE TABLE `user_links` (
   `created_at` datetime DEFAULT NULL,
   `created_by` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user_links` */
+
+insert  into `user_links`(`id`,`user_id`,`type`,`link`,`created_at`,`created_by`) values (67,25,'Vinted','http://virtuax.softixs.com','2022-11-24 01:40:51',1);
 
 /*Table structure for table `user_phone_number` */
 
@@ -176,9 +203,11 @@ CREATE TABLE `user_phone_number` (
   `created_at` datetime DEFAULT NULL,
   `created_by` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user_phone_number` */
+
+insert  into `user_phone_number`(`id`,`user_id`,`phone_number`,`created_at`,`created_by`) values (93,25,'09862516516','2022-11-24 01:40:51',1),(94,25,'02032032032','2022-11-24 01:40:51',1);
 
 /*Table structure for table `user_views` */
 
@@ -189,9 +218,11 @@ CREATE TABLE `user_views` (
   `user_id` bigint(20) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user_views` */
+
+insert  into `user_views`(`id`,`user_id`,`created_at`) values (1,25,'2022-11-23 08:14:02'),(2,25,'2022-11-23 01:53:56'),(3,25,'2022-11-23 01:55:54'),(4,25,'2022-11-24 08:43:27'),(5,25,'2022-11-24 08:44:39'),(6,25,'2022-11-24 08:46:32'),(7,25,'2022-11-24 08:49:00'),(8,25,'2022-11-24 08:51:01'),(9,25,'2022-11-24 08:51:13'),(10,25,'2022-11-24 08:52:32'),(11,25,'2022-11-24 08:53:31'),(12,25,'2022-11-24 08:53:34'),(13,25,'2022-11-24 08:54:15'),(14,25,'2022-11-24 08:54:19'),(15,25,'2022-11-24 08:54:21'),(16,25,'2022-11-24 08:54:32'),(17,25,'2022-11-24 08:54:55'),(18,25,'2022-11-24 08:55:51'),(19,25,'2022-11-24 08:55:55'),(20,25,'2022-11-24 08:56:13'),(21,25,'2022-11-24 08:56:37'),(22,25,'2022-11-24 01:40:32'),(23,25,'2022-11-24 01:41:08'),(24,25,'2022-11-25 06:21:02'),(25,25,'2022-11-25 06:23:04'),(26,25,'2022-11-25 07:21:16'),(27,25,'2022-11-25 07:21:28'),(28,25,'2022-11-28 04:35:32'),(29,27,'2022-11-28 04:45:10'),(30,25,'2022-12-01 06:24:42');
 
 /*Table structure for table `users` */
 
@@ -228,11 +259,11 @@ CREATE TABLE `users` (
   `v_card_path` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`parent_id`,`first_name`,`last_name`,`contact_no`,`company_name`,`email`,`user_type`,`email_verified_at`,`password`,`password_show`,`profile_picture`,`remember_token`,`created_at`,`updated_at`,`deleted_at`,`updated_by`,`created_by`,`street_address`,`city`,`state`,`zip_code`,`country`,`function`,`town`,`contact_form_path`,`ios_pass_path`,`v_card_path`) values (1,0,'Dawn','Gill','03412250984','Dawn','dawngill08@gmail.com',2,NULL,'$2y$10$.o8YXhFiVpG9vM8yb0XvHeu4tHbkI4y7IPZD9P9qCOyWbG5hqhIBy','aaa','blank.png',NULL,'2022-11-25 21:33:46','2022-11-25 21:33:46',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+insert  into `users`(`id`,`parent_id`,`first_name`,`last_name`,`contact_no`,`company_name`,`email`,`user_type`,`email_verified_at`,`password`,`password_show`,`profile_picture`,`remember_token`,`created_at`,`updated_at`,`deleted_at`,`updated_by`,`created_by`,`street_address`,`city`,`state`,`zip_code`,`country`,`function`,`town`,`contact_form_path`,`ios_pass_path`,`v_card_path`) values (1,0,'Kashir','Khan','020230300203',NULL,'kashir123@gmail.com',2,NULL,'$2y$10$.o8YXhFiVpG9vM8yb0XvHeu4tHbkI4y7IPZD9P9qCOyWbG5hqhIBy','aaa','1/202211172212user.webp',NULL,NULL,'2022-11-17 22:12:11',NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(24,0,'Emil Frey',NULL,NULL,NULL,'baxter@company.com',3,NULL,'$2y$10$P6Jn6fCtoX/cAFgLMAspdufZE5kYC79DFT9FfMiIv24TQTmi/32lG','aaa','24/202211290950Capture d’écran 2022-11-29 à 10.49.08.png',NULL,'2022-11-17 21:27:29','2022-11-29 09:50:21',NULL,1,1,'Ad quia nesciunt mo','Quasi ut amet aliqu','Laboriosam id adipi','77475','Quisquam omnis sed e',NULL,NULL,NULL,NULL,NULL),(25,24,'Oussama','BOUAOUD','79123123',NULL,'dawngill08@gmail.com',1,NULL,'$2y$10$rdTrvwe5DYLLPL1XO.jmCOglfdcv9PsI1n0TVgyKSMvVFCGHGv5ui','aaa','blank.png',NULL,'2022-11-17 21:28:08','2022-12-09 11:44:56',NULL,1,24,'Odio perferendis cul',NULL,NULL,'95025','karachi','Dolores sit est exer','Dolor corporis incid','contactformImg/25/202211230818favicon.png','iospasspath/25/thumbnail.png','https://virtuax.softixs.com/vcard/dawn-gilla.vcf'),(27,24,'Oussama','BOUAOUD','0033609892415',NULL,'oussama13-05@hotmail.fr',1,NULL,'$2y$10$H4hA9jrhLEkdVgMoQLNQk.1gxpjf6IDrnZSsMYR2uTLDjYcqRLEt2','aaa','blank.png',NULL,'2022-11-28 16:30:57','2022-11-28 16:30:57',NULL,NULL,24,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(28,0,NULL,NULL,NULL,'VirtuaCard','hello@virtuacard.fr',3,NULL,'$2y$10$pTzOilZIPqi2C85yECveAeIx/MgWWoBKAx4nb7i9iwP.B5qG0ywyu','aaa','blank.png',NULL,'2022-12-08 09:11:43','2022-12-08 09:11:43',NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
